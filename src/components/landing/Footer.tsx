@@ -37,6 +37,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/admin" className="hover:text-white transition-colors">
+                  Panel Admin
+                </Link>
+              </li>
+              <li>
                 <Link href="#servicios" className="hover:text-white transition-colors">
                   Servicios
                 </Link>

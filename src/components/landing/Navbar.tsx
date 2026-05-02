@@ -41,6 +41,9 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-4 lg:flex">
+          <Link href="/admin" className="text-sm font-medium text-gray-600 transition-colors hover:text-brand-blue">
+            Admin
+          </Link>
           <Link href="/login">
             <Button className="bg-brand-red hover:brightness-110">
               Acceso Clientes
@@ -69,6 +72,9 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
+          <Link href="/admin" className="block py-3 text-sm font-medium text-gray-600">
+            Admin
+          </Link>
           <div className="mt-3">
             <Link href="/login">
               <Button className="w-full bg-brand-red">Acceso Clientes</Button>
