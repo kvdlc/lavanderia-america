@@ -75,7 +75,7 @@ export function Hero() {
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-brand-blue/10 via-brand-red/5 to-brand-blue/5 blur-2xl" />
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img
-                src="/images/hero/laundry-industrial.svg"
+                src="/images/imagen%20de%20lavadora.png"
                 alt="Lavandería Industrial"
                 className="relative z-10 w-full"
               />

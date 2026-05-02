@@ -35,9 +35,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="flex min-h-screen bg-gray-50">
       <aside className={cn("fixed inset-y-0 left-0 z-40 w-64 overflow-y-auto bg-white shadow-md transition-transform lg:static lg:translate-x-0", open ? "translate-x-0" : "-translate-x-full")}>
         <div className="flex h-16 items-center gap-3 border-b px-6">
-          <div className="flex h-8 w-8 items-center justify-center rounded bg-brand-blue">
-            <span className="text-sm font-extrabold text-white">LA</span>
-          </div>
+          <img
+            src="/images/logo%20lavanderia%20para%20fondo%20claro.png"
+            alt="Lavandería América"
+            className="h-10 w-auto"
+          />
           <span className="text-lg font-bold text-brand-blue">Admin</span>
         </div>
         <nav className="flex flex-col gap-0.5 p-3">

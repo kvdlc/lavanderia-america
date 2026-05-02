@@ -12,9 +12,11 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-blue">
-                <span className="text-lg font-extrabold text-white">LA</span>
-              </div>
+              <img
+                src="/images/logo%20lavanderia%20para%20fondo%20oscuro.png"
+                alt="Lavandería América"
+                className="h-10 w-auto"
+              />
               <span className="text-xl font-extrabold text-white">
                 Lavandería América
               </span>

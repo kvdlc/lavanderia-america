@@ -20,12 +20,11 @@ export function Navbar() {
     <header className="fixed inset-x-0 top-0 z-50 glass border-b border-white/20 shadow-nav">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-blue shadow-md">
-            <span className="text-lg font-extrabold text-white">LA</span>
-          </div>
-          <span className="hidden text-lg font-extrabold text-brand-blue sm:block">
-            Lavander&iacute;a Am&eacute;rica
-          </span>
+          <img
+            src="/images/logo%20lavanderia%20para%20fondo%20claro.png"
+            alt="Lavandería América"
+            className="h-10 w-auto"
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
