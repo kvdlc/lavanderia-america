@@ -1,5 +1,7 @@
 "use client";
 
+;
+
 const PARTNERS = [
   { name: "Minera Yanacocha" },
   { name: "Compañía Minera Antamina" },
@@ -13,19 +15,15 @@ const PARTNERS = [
   { name: "Nexa Resources" },
 ];
 
-function getInitials(name: string) {
-  return name
-    .split(" ")
-    .map((w) => w[0])
-    .join("")
-    .slice(0, 3);
-}
-
 function PartnerItem({ name }: { name: string }) {
   return (
     <div className="group flex shrink-0 flex-col items-center gap-3 px-6 w-40">
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gray-200 text-xs font-bold text-gray-400 grayscale transition-all duration-500 group-hover:bg-brand-blue/10 group-hover:text-brand-blue group-hover:grayscale-0 group-hover:scale-110">
-        {getInitials(name)}
+      <div className="relative h-16 w-16 overflow-hidden rounded-full bg-gray-100 ring-2 ring-gray-100 transition-all duration-500 group-hover:ring-brand-blue/30 group-hover:scale-110">
+        <img
+          src="/images/partners/partner-placeholder.svg"
+          alt={name}
+          className="absolute inset-0 object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+        />
       </div>
       <span className="text-center text-xs font-medium text-gray-500 transition-colors group-hover:text-brand-blue">
         {name}

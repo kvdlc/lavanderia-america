@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- Generic building/company icon -->
+  <!-- Building body -->
+  <rect x="30" y="38" width="60" height="72" rx="3" fill="#105189" opacity="0.1" stroke="#105189" stroke-width="2"/>
+  <!-- Roof -->
+  <polygon points="22,38 60,16 98,38" fill="#a81a17" opacity="0.15" stroke="#a81a17" stroke-width="2"/>
+  <!-- Windows row 1 -->
+  <rect x="40" y="48" width="10" height="10" rx="1" fill="#105189" opacity="0.2"/>
+  <rect x="55" y="48" width="10" height="10" rx="1" fill="#105189" opacity="0.2"/>
+  <rect x="70" y="48" width="10" height="10" rx="1" fill="#105189" opacity="0.2"/>
+  <!-- Windows row 2 -->
+  <rect x="40" y="65" width="10" height="10" rx="1" fill="#105189" opacity="0.2"/>
+  <rect x="55" y="65" width="10" height="10" rx="1" fill="#a81a17" opacity="0.15"/>
+  <rect x="70" y="65" width="10" height="10" rx="1" fill="#105189" opacity="0.2"/>
+  <!-- Door -->
+  <rect x="52" y="85" width="16" height="25" rx="3" fill="#a81a17" opacity="0.25" stroke="#a81a17" stroke-width="1.5"/>
+  <!-- Door handle -->
+  <circle cx="63" cy="98" r="1.5" fill="#a81a17" opacity="0.6"/>
+  <!-- Ground line -->
+  <line x1="15" y1="110" x2="105" y2="110" stroke="#105189" stroke-width="1.5" opacity="0.15"/>
+</svg>

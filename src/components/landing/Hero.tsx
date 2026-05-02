@@ -27,43 +27,61 @@ export function Hero() {
       <span className="pointer-events-none absolute bottom-[18%] left-[55%] animate-float text-base text-brand-blue/15" style={{ animationDelay: "5s" }}>&#10022;</span>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-4xl text-center">
-        <div className="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-brand-blue/10 bg-brand-blue/10 px-5 py-1.5 text-sm font-medium text-brand-blue">
-          &#129530; Servicio Industrial Certificado
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-2">
+        {/* Left: Text */}
+        <div className="text-center lg:text-left">
+          <div className="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-brand-blue/10 bg-brand-blue/10 px-5 py-1.5 text-sm font-medium text-brand-blue">
+            &#129530; Servicio Industrial Certificado
+          </div>
+
+          <h1 className="gradient-text-blue stagger-1 mt-6 text-5xl font-extrabold leading-tight tracking-tight lg:text-7xl animate-fade-in-up">
+            Limpieza con Est&aacute;ndares de Acero
+          </h1>
+
+          <p className="stagger-2 mx-auto mt-6 max-w-2xl text-lg text-gray-600 lg:mx-0 lg:text-xl animate-fade-in-up">
+            Procesamiento industrial de prendas para el sector minero y corporativo. Protocolos certificados, trazabilidad completa y entrega puntual en toda la regi&oacute;n.
+          </p>
+
+          <div className="stagger-3 mt-10 flex flex-col items-center gap-4 sm:flex-row lg:justify-start animate-fade-in-up">
+            <Link href="#cotizador" className="btn-primary inline-flex items-center gap-2 px-8 py-4 text-lg">
+              Quiero mi Cotizaci&oacute;n
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+            <Link href="/tienda" className="btn-ghost-brand inline-flex items-center gap-2 px-8 py-4 text-lg">
+              Ver Servicios
+              <Star className="h-5 w-5" />
+            </Link>
+          </div>
+
+          <div className="stagger-4 mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-500 lg:justify-start animate-fade-in-up">
+            <span className="inline-flex items-center gap-1.5">
+              <Check className="h-4 w-4 text-brand-blue" />
+              Sin compromiso
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Check className="h-4 w-4 text-brand-blue" />
+              Respuesta en 24h
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Check className="h-4 w-4 text-brand-blue" />
+              IGV incluido
+            </span>
+          </div>
         </div>
 
-        <h1 className="gradient-text-blue stagger-1 mt-6 text-5xl font-extrabold leading-tight tracking-tight lg:text-7xl animate-fade-in-up">
-          Limpieza con Est&aacute;ndares de Acero
-        </h1>
-
-        <p className="stagger-2 mx-auto mt-6 max-w-2xl text-lg text-gray-600 lg:text-xl animate-fade-in-up">
-          Procesamiento industrial de prendas para el sector minero y corporativo. Protocolos certificados, trazabilidad completa y entrega puntual en toda la regi&oacute;n.
-        </p>
-
-        <div className="stagger-3 mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center animate-fade-in-up">
-          <Link href="#cotizador" className="btn-primary inline-flex items-center gap-2 px-8 py-4 text-lg">
-            Quiero mi Cotizaci&oacute;n
-            <ArrowRight className="h-5 w-5" />
-          </Link>
-          <Link href="/tienda" className="btn-ghost-brand inline-flex items-center gap-2 px-8 py-4 text-lg">
-            Ver Servicios
-            <Star className="h-5 w-5" />
-          </Link>
-        </div>
-
-        <div className="stagger-4 mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-500 animate-fade-in-up">
-          <span className="inline-flex items-center gap-1.5">
-            <Check className="h-4 w-4 text-brand-blue" />
-            Sin compromiso
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <Check className="h-4 w-4 text-brand-blue" />
-            Respuesta en 24h
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <Check className="h-4 w-4 text-brand-blue" />
-            IGV incluido
-          </span>
+        {/* Right: Hero Image */}
+        <div className="relative hidden lg:flex lg:items-center lg:justify-center">
+          <div className="animate-float-slow relative w-full max-w-[400px]">
+            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-brand-blue/10 via-brand-red/5 to-brand-blue/5 blur-2xl" />
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+              <img
+                src="/images/hero/laundry-industrial.svg"
+                alt="Lavandería Industrial"
+                className="relative z-10 w-full"
+              />
+              <div className="absolute inset-0 z-20 bg-gradient-to-t from-brand-blue/20 to-transparent" />
+            </div>
+          </div>
         </div>
       </div>
     </section>

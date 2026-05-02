@@ -38,23 +38,26 @@ export async function loginAction(formData: FormData) {
     return { error: "Email o contraseña inválidos." };
   }
 
-  const supabase = await createAuthClient();
+  try {
+    const supabase = await createAuthClient();
+    const { error } = await supabase.auth.signInWithPassword(parsed.data);
 
-  const { error } = await supabase.auth.signInWithPassword(parsed.data);
+    if (error) {
+      return { error: "Credenciales incorrectas." };
+    }
 
-  if (error) {
-    return { error: "Credenciales incorrectas." };
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("role")
+      .single();
+
+    if (profile?.role === "client") {
+      redirect("/cliente");
+    }
+    redirect("/admin");
+  } catch {
+    return { error: "Servicio no disponible. Intente nuevamente." };
   }
-
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("role")
-    .single();
-
-  if (profile?.role === "client") {
-    redirect("/cliente");
-  }
-  redirect("/admin");
 }
 
 export async function registerAction(formData: FormData) {
@@ -73,34 +76,41 @@ export async function registerAction(formData: FormData) {
     return { error: firstError };
   }
 
-  const supabase = await createAuthClient();
-
-  const { data, error } = await supabase.auth.signUp({
-    email: parsed.data.email,
-    password: parsed.data.password,
-  });
-
-  if (error) {
-    return { error: error.message };
-  }
-
-  if (data.user) {
-    await supabase.from("profiles").insert({
-      id: data.user.id,
+  try {
+    const supabase = await createAuthClient();
+    const { data, error } = await supabase.auth.signUp({
       email: parsed.data.email,
-      full_name: parsed.data.full_name,
-      role: "client",
-      phone: parsed.data.phone || null,
-      company_name: parsed.data.company_name || null,
-      ruc: parsed.data.ruc || null,
+      password: parsed.data.password,
     });
-  }
 
-  redirect("/cliente");
+    if (error) {
+      return { error: error.message };
+    }
+
+    if (data.user) {
+      await supabase.from("profiles").insert({
+        id: data.user.id,
+        email: parsed.data.email,
+        full_name: parsed.data.full_name,
+        role: "client",
+        phone: parsed.data.phone || null,
+        company_name: parsed.data.company_name || null,
+        ruc: parsed.data.ruc || null,
+      });
+    }
+
+    redirect("/cliente");
+  } catch {
+    return { error: "Servicio no disponible. Intente nuevamente." };
+  }
 }
 
 export async function logoutAction() {
-  const supabase = await createAuthClient();
-  await supabase.auth.signOut();
+  try {
+    const supabase = await createAuthClient();
+    await supabase.auth.signOut();
+  } catch {
+    // Proceed to login even if signOut fails
+  }
   redirect("/login");
 }

@@ -1,13 +1,21 @@
 "use client";
 
 import { useState, useRef, type MouseEvent } from "react";
-import { Bed, Shirt, Sparkles } from "lucide-react";
-import type { Service } from "@/types";
-import { SERVICE_CATEGORY_LABELS } from "@/types";
-import { formatCurrency } from "@/lib/utils";
-import { cn } from "@/lib/utils";
 
-const CATEGORY_ICONS: Record<string, typeof Bed> = {
+import { Bed, Shirt, Sparkles } from "lucide-react";
+import type { Service, ServiceCategory } from "@/types";
+import { SERVICE_CATEGORY_LABELS } from "@/types";
+import { formatCurrency, cn } from "@/lib/utils";
+
+const CATEGORY_IMAGES: Record<ServiceCategory, string> = {
+  frazada_1p: "/images/services/frazada-1p.svg",
+  frazada_15p: "/images/services/frazada-15p.svg",
+  edredon: "/images/services/edredon.svg",
+  ropa_industrial: "/images/services/ropa-industrial.svg",
+  otro: "/images/services/ropa-industrial.svg",
+};
+
+const CATEGORY_ICONS: Record<ServiceCategory, typeof Bed> = {
   frazada_1p: Bed,
   frazada_15p: Bed,
   edredon: Bed,
@@ -23,13 +31,14 @@ function ServiceCard({
   large?: boolean;
 }) {
   const Icon = CATEGORY_ICONS[service.category] || Sparkles;
+  const imgSrc = CATEGORY_IMAGES[service.category];
   const cardRef = useRef<HTMLDivElement>(null);
-  const [glowPos, setGlowPos] = useState({ x: 50, y: 50 });
+  const [pos, setPos] = useState({ x: 50, y: 50 });
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     const rect = cardRef.current?.getBoundingClientRect();
     if (!rect) return;
-    setGlowPos({
+    setPos({
       x: ((e.clientX - rect.left) / rect.width) * 100,
       y: ((e.clientY - rect.top) / rect.height) * 100,
     });
@@ -40,37 +49,43 @@ function ServiceCard({
       ref={cardRef}
       onMouseMove={handleMouseMove}
       className={cn(
-        "card-premium card-glow group flex flex-col p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl",
+        "card-premium card-glow group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl",
         large ? "lg:col-span-2 lg:row-span-2" : ""
       )}
-      style={
-        {
-          "--glow-x": `${glowPos.x}%`,
-          "--glow-y": `${glowPos.y}%`,
-        } as React.CSSProperties
-      }
+      style={{ "--x": `${pos.x}%`, "--y": `${pos.y}%` } as React.CSSProperties}
     >
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-brand-blue/10 text-brand-blue transition-colors group-hover:bg-brand-blue group-hover:text-white">
-        <Icon className="h-6 w-6" />
+      <div className={cn("relative w-full overflow-hidden", large ? "h-48" : "h-[120px]")}>
+        <img
+          src={imgSrc}
+          alt={service.name}
+          className="absolute inset-0 rounded-t-2xl object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 rounded-t-2xl bg-gradient-to-t from-black/25 to-transparent" />
+        <div className="absolute left-3 top-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/90 text-brand-blue shadow backdrop-blur-sm">
+          <Icon className="h-5 w-5" />
+        </div>
       </div>
-      <h3 className="text-lg font-bold text-brand-blue">{service.name}</h3>
-      {large && service.long_desc && (
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-600">
-          {service.long_desc}
-        </p>
-      )}
-      {!large && service.description && (
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-600">
-          {service.description}
-        </p>
-      )}
-      <div className="mt-4 flex items-center justify-between border-t border-gray-100 pt-3">
-        <span className="rounded-full bg-brand-blue/10 px-3 py-0.5 text-xs font-semibold text-brand-blue">
-          {SERVICE_CATEGORY_LABELS[service.category]}
-        </span>
-        <span className="text-xl font-bold text-brand-red">
-          {formatCurrency(service.base_price)}
-        </span>
+
+      <div className="flex flex-1 flex-col p-5">
+        <h3 className="text-lg font-bold text-brand-blue">{service.name}</h3>
+        {large && service.long_desc && (
+          <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-600">
+            {service.long_desc}
+          </p>
+        )}
+        {!large && service.description && (
+          <p className="mt-2 flex-1 text-sm leading-relaxed text-gray-600">
+            {service.description}
+          </p>
+        )}
+        <div className="mt-4 flex items-center justify-between border-t border-gray-100 pt-3">
+          <span className="rounded-full bg-brand-blue/10 px-3 py-0.5 text-xs font-semibold text-brand-blue">
+            {SERVICE_CATEGORY_LABELS[service.category]}
+          </span>
+          <span className="text-xl font-bold text-brand-red">
+            {formatCurrency(service.base_price)}
+          </span>
+        </div>
       </div>
     </div>
   );
