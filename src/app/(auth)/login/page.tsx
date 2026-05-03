@@ -29,7 +29,7 @@ export default function LoginPage() {
       const { data, error: loginError } = await supabase.auth.signInWithPassword({ email, password });
 
       if (loginError) {
-        setError("Credenciales incorrectas.");
+        setError(loginError.message);
         setLoading(false);
         return;
       }
@@ -71,11 +71,11 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Correo electrónico</Label>
-              <Input id="email" name="email" type="email" placeholder="correo@empresa.com" required />
+              <Input id="email" name="email" type="email" placeholder="correo@empresa.com" required defaultValue="admin@lavanderia.com" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Contraseña</Label>
-              <Input id="password" name="password" type="password" placeholder="••••••••" required minLength={6} />
+              <Input id="password" name="password" type="password" placeholder="Mínimo 6 caracteres" required minLength={6} />
             </div>
 
             {error && (
